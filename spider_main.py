@@ -17,12 +17,10 @@ class SpiderMain(object):
                 print('craw %d : %s' % (count, new_url))
                 html_cont = self.downloader.download(new_url)
                 new_urls, new_data = self.parser.parse(new_url, html_cont)
-                print(new_urls)
-                print(new_data)
-                # self.urls.add_new_urls(new_urls)
-                # self.outputer.collect_data(new_data)
+                self.urls.add_new_urls(new_urls)
+                self.outputer.collect_data(new_data)
 
-                if count == 10:
+                if count == 2:
                     break
                 count += 1
             except:
