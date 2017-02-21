@@ -22,4 +22,13 @@ class HtmlParser(object):
         return new_urls
 
     def _get_new_data(self, page_url, soup):
-        pass
+        # <dd class="lemmaWgt-lemmaTitle-title"> <h1>PHP</h1>
+        title = soup.find('dd',class_="lemmaWgt-lemmaTitle-title").find('h1').get_text()
+
+        # <div class="lemma-summary" label-module="lemmaSummary">
+        summary = soup.find('div',class_="lemma-summary").get_text()
+
+        data = {}
+        data['title'] = title
+        data['summary'] = summary
+        return data
