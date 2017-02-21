@@ -1,4 +1,4 @@
-from baike_spider import url_manager, html_downloader, html_parser, html_outputer
+import url_manager, html_downloader, html_parser, html_outputer
 
 
 class SpiderMain(object):
@@ -15,12 +15,12 @@ class SpiderMain(object):
             try:
                 new_url = self.urls.get_new_url()
                 print('craw %d : %s' % (count, new_url))
-                html_cont = self.downloader.download(new_url)
-                new_urls, new_data = self.parser.parse(new_url, html_cont)
-                self.urls.add_new_urls(new_urls)
-                self.outputer.collect_data(new_data)
+                # html_cont = self.downloader.download(new_url)
+                # new_urls, new_data = self.parser.parse(new_url, html_cont)
+                # self.urls.add_new_urls(new_urls)
+                # self.outputer.collect_data(new_data)
 
-                if count == 1000:
+                if count == 10:
                     break
                 count += 1
             except:
@@ -30,6 +30,6 @@ class SpiderMain(object):
 
 
 if __name__ == '__main__':
-    root_url = "http://baike.baidu.com/item/python"
+    root_url = "http://baike.baidu.com/view/99.htm"
     obj_spider = SpiderMain()
     obj_spider.craw(root_url)
