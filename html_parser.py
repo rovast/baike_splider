@@ -6,7 +6,7 @@ class HtmlParser(object):
     def parse(self,page_url,page_cont):
         if page_url is None or page_cont is None:
             return None
-        soup = BeautifulSoup(page_cont,'html.parser')
+        soup = BeautifulSoup(page_cont,'html.parser',from_encoding="utf-8")
 
         new_urls = self._get_new_urls(page_url,soup)
         new_data = self._get_new_data(page_url,soup)
@@ -30,5 +30,6 @@ class HtmlParser(object):
 
         data = {}
         data['title'] = title
+        data['url'] = page_url
         data['summary'] = summary
         return data
